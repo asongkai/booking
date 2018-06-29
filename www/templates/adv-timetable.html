@@ -1,0 +1,53 @@
+<ion-view>
+    <ion-nav-title>ตารางสถานที่</ion-nav-title>
+    <ion-content class="has-header pitches" scroll="true">
+        <div ui-calendar="uiConfig.calendar" class="span8 calendar color-white padding" ng-model="eventSources"></div>
+        <div class="adv-table padding">
+            <form name="searchForm" class="formsearch padding" novalidate>
+                <h4 class="text-left color-white"> <span class="icon ion-android-checkbox-outline"></span> เลือกวันจอง</h4>
+                <div class="row row-no-padding">
+                    <div class="col">
+                        <a class="button search-btn-date button-full">เลือกวันที่: </a>
+                    </div>
+                    <div class="col">
+                        <button class="button button-full search-btn icon-right ion-chevron-down" ng-click="selectDate($event)" ng-model="selectedDate">{{selectedDate | date:'dd/MM/yyyy'}}</button>
+                    </div>
+                </div>
+                <div class="row row-no-padding">
+                    <div class="col">
+                        <a class="button search-btn-time button-full">เลือกเวลา: </a>
+                    </div>
+                    <div class="col">
+                        <button class="button search-btn button-full icon-right ion-chevron-down" modal-select="" ng-model="selectedTime" option-property="start_time" options="selectStart" on-select="updateTime(newValue, oldValue)" on-reset="ResetTime()" modal-title="เลือกเวลาเริ่มต้น" has-search="true">
+                          {{selectedTime}} 
+                          <div class="option">
+                            <h2>{{option.display}}</h2>
+                            <p>{{option.start_time}}</p>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-no-padding">
+                    <div class="col">
+                        <a class="button search-btn-hours button-full">จำนวนชั่วโมง: </a>
+                    </div>
+                    <div class="col">
+                        <button class="button search-btn button-full icon-right ion-chevron-down" modal-select="" ng-model="selectedHours" option-property="display" options="selectHours" on-select="updateHours(newValue, oldValue)" on-reset="ResetHour()" modal-title="เลือกจำนวนชั่วโมง">
+                          {{selectedHours}} 
+                          <div class="option">
+                            <h2>{{option.display}}</h2>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-no-padding">
+                    <div class="col col-50">
+                    </div>
+                    <div class="col col-50">
+                        <button class="button button-block btn button-icon icon-right ion-ios-checkmark-outline" ng-click="book()" ng-disabled="searchForm.$invalid">จอง</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

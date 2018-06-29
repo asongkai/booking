@@ -1,0 +1,35 @@
+<ion-view>
+    <div class="bar bar-header bar-positive">
+        <h1 class="title">ยืนยันรหัส</h1>
+    </div>
+    <ion-content class="has-header register" scroll="true">
+        <div class="row row-center row-no-padding">
+            <div class="col col-center register-box">
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="row input-phone">
+                            <div class="col col-center">
+                                <h1 class="title-heading color-white">ป้อนรหัส 4 หลักที่ส่งทาง SMS</h1>
+                                <label class="item item-input">
+                                    <i class="icon ion-key color-white label-phone"></i><span class="input-label color-white label-phone">รหัส: </span>
+                                    <input type="number" name="code" ng-model="confirm.code" class="verification-code color-white phone-number">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10">
+                            </div>
+                            <div class="col col-80">
+                                <button type="button" ng-click="confirmCode(confirm)" ng-disabed="!confirm.code" class="register-btn button button-full icon-right ion-chevron-right">
+                                    ยืนยัน
+                                </button>
+                            </div>
+                            <div class="col col-10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

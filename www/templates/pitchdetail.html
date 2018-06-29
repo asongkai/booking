@@ -1,0 +1,112 @@
+<ion-view>
+    <ion-nav-title>สรุปการจอง</ion-nav-title>
+    <ion-content class="pitch-detail">
+        <div class="center">
+            <ion-spinner ng-if="isLoading" icon="dots" class="spinner-light"></ion-spinner>
+        </div>
+        <div class="list pitchdetail color-white">
+            <div class="pitch item">
+                <div class="row row-no-padding">
+                    <div class="col col-20">
+                        <img src="img/icon/pitch.png">
+                    </div>
+                    <div class="col col-25 text">
+                        <strong>สถานที่</strong>
+                    </div>
+                    <div class="col col-50 text">
+                        <strong class="item-text-wrap">{{pitch.name}}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="pitch item">
+                <div class="row row-no-padding">
+                    <div class="col col-20">
+                        <img src="img/icon/date_detail.png">
+                    </div>
+                    <div class="col col-25 text">
+                        <strong>วันที่</strong>
+                    </div>
+                    <div class="col col-50 text">
+                        <strong class="size">{{ requestDate | date:'dd-MM-yyyy'}}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="pitch item">
+                <div class="row row-no-padding">
+                    <div class="col col-20">
+                        <img src="img/icon/time.png">
+                    </div>
+                    <div class="col col-25 text">
+                        <strong>เวลา</strong>
+                    </div>
+                    <div class="col col-50 text">
+                        <strong class="size">{{ book_time }}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="pitch item">
+                <div class="row row-no-padding">
+                    <div class="col col-20">
+                        <img src="img/icon/price.png">
+                    </div>
+                    <div class="col col-25 text">
+                        <strong>ราคา</strong>
+                    </div>
+                    <div class="col col-50 text">
+                        <strong>{{ price.bookPrice | number}} บาท</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="pitch item">
+                <div class="row row-no-padding">
+                    <div class="col col-33">
+
+                    </div>
+                    <div class="col col-67">
+                        <button class="button button-full btn button-icon icon-right ion-ios-checkmark-outline" ng-click="booking()"> ยืนยันการจอง </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="color-white pitch-more-detail">
+            <div class="row row-no-padding">
+                <div class="col col-33 text-center color-white">
+                    <img src="img/icon/pitch_type.png">
+                    <h6 class="color-white row-text">สถานที่ <br>
+                        <strong class="rows-text">{{pitch.pitch_type}}</strong>
+                    </h6>
+
+                </div>
+                <div class="col col-33 text-center color-white">
+                    <img src="img/icon/address.png">
+                    <h6 class="color-white row-text">ที่อยู่ <br>
+                        <strong class="rows-text">{{pitch.address}}</strong>
+                    </h6>
+
+                </div>
+                <div class="col col-33 text-center color-white">
+                    <img src="img/icon/phone.png">
+                    <h6 class="color-white row-text">ติดต่อ <br>
+                        <strong class="rows-text">{{pitch.phone}}</strong>
+                    </h6>
+
+                </div>
+            </div>
+            <hr class="color-blackgreen">
+            <div class="row row-no-padding map">
+                <div class="col text-center">
+                    <a ng-href="#/app/map/{{pitch.latitude}}/{{pitch.longtitude}}/{{pitch.name}}"><img src="img/icon/map.png">
+                        <h6 class="row-text color-white">แผนที่</h6></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="list">
+            <ion-slide-box ng-init="initPhotos()" show-pager="true" on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="photo in photos">
+                    <img ng-src="http://booking.asongkai.com{{photo.url}}" height="100%" width="100%" style="width: 100%">
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,5 +1,96 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>Search</h1>
-  </ion-content>
+<ion-view>
+    <ion-nav-title>เลือกวันที่คุณต้องการจอง</ion-nav-title>
+    <ion-content scroll="true" padding="true" class="search search-container">
+        <div class="center">
+          <ion-spinner ng-if="isLoading" icon="dots" class="spinner-positive"></ion-spinner>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col col-50">
+                <a class="button search-btn-date button-full">เลือกวันที่: </a>
+            </div>
+            <div class="col col-50">
+                <button class="button button-full search-btn icon-right ion-chevron-down" ng-click="selectDate($event)" ng-model="selectedDate">{{selectedDate | date:'dd/MM/yyyy'}}</button>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col col-50">
+                <a class="button search-btn-time button-full">เลือกเวลา: </a>
+            </div>
+            <div class="col col-50">
+                <button class="button search-btn button-full icon-right ion-chevron-down" modal-select="" ng-model="selectedTime" option-property="start_time" options="selectStart" on-select="updateTime(newValue, oldValue)" on-reset="ResetTime()" modal-title="เลือกเวลาเริ่มต้น" has-search="true">
+                  {{selectedTime}} 
+                  <div class="option">
+                    <h2>{{option.display}}</h2>
+                    <p>{{option.start_time}}</p>
+                  </div>
+                </button>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col col-50">
+                <a class="button search-btn-hours button-full">จำนวนชั่วโมง: </a>
+            </div>
+            <div class="col col-50">
+                <button class="button search-btn button-full icon-right ion-chevron-down" modal-select="" ng-model="selectedHours" option-property="display" options="selectHours" on-select="updateHours(newValue, oldValue)" on-reset="ResetHour()" modal-title="เลือกจำนวนชั่วโมง">
+                  {{selectedHours}} 
+                  <div class="option">
+                    <h2>{{option.display}}</h2>
+                  </div>
+                </button>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col col-50">
+            </div>
+            <div class="col col-50">
+                <button class="button button-full btn button-icon icon-right ion-ios-search" ng-click="searchPitch()" ng-disabled="searchForm.$invalid">ค้นหาพื้นที่</button>
+            </div>
+        </div>
+        <div class="list card">
+            <ion-toggle ion-toggle-text ng-model="advance" ng-change="setDefaultAdv()">
+                <b><i class="icon ion-android-time"></i> เพิ่มความละเอียด</b>
+            </ion-toggle>
+            <div class="animate-hide advance" ng-show="advance">
+                <div class="row row-no-padding">
+                    <div class="col col-40">
+                        <button class="button button-icon select-btn-bg button-full">เลือกประเภท: </button>
+                    </div>
+                    <div class="col col-60">
+                         <button class="button button-icon select-btn-bg button-full icon-right ion-chevron-down color-white" modal-select="" ng-model="selectedType" option-property="value" options="selectTypes" modal-title="เลือกประเภทเพิ่มเติม" on-select="updateType(newValue, oldValue)" on-reset="ResetType()">
+                          {{selectedType}} 
+                          <div class="option">
+                            <h2>{{option.display}}</h2>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-no-padding province">
+                    <div class="col col-40">
+                        <button class="button button-icon button-full color-white">เลือกจังหวัด: </button>
+                    </div>
+                    <div class="col col-60">
+                         <button class="button button-icon button-full icon-right ion-chevron-down color-white" modal-select="" ng-model="selectedProvince" option-property="name" options="provinces" modal-title="เลือกจังหวัด" has-search="true" on-select="getDistrict(newValue, oldValue)" on-reset="ResetProvince()" ng-change="resetD()">
+                          {{selectedProvince}} 
+                          <div class="option">
+                            <h2>{{option.name}}</h2>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-no-padding">
+                    <div class="col col-40">
+                        <button class="button button-icon select-btn-bg button-full">เลือกเมือง: </button>
+                    </div>
+                    <div class="col col-60">
+                         <button class="button button-icon select-btn-bg button-full icon-right ion-chevron-down color-white" modal-select="" ng-model="selectedDistrict" option-property="name" options="districts" modal-title="เลือกเมือง" has-search="true" on-select="updateDistrict(newValue, oldValue)" on-reset="ResetDistrict()">
+                          {{selectedDistrict}} 
+                          <div class="option">
+                            <h2>{{option.name}}</h2>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

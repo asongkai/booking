@@ -1,0 +1,96 @@
+<ion-view>
+    <ion-nav-title>
+        ข้อมูลสถานที่ {{pitch.name}}
+    </ion-nav-title>
+    <ion-content class="pitch-list" scroll="true">
+        <div class="center">
+            <ion-spinner ng-if="isLoading" icon="dots" class="spinner-light"></ion-spinner>
+        </div>
+        <div class="list single-pitch" ng-init="initPhotos()">
+            <ion-slide-box show-pager="true" on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true" ng-if="photos.length">
+                <ion-slide ng-repeat="photo in photos">
+                    <img ng-src="http://booking.asongkai.com{{photo.url}}" style="width: 100%; height: 180px;">
+                </ion-slide>
+            </ion-slide-box>
+            <div class="pitch-single-item padding" ng-init="initPitch()" ng-if="!isLoading">
+                <div class="row row-no-padding">
+                    <div class="col col-25 logo">
+                        <img ng-src="http://booking.asongkai.com{{pitch.logo}}" ng-if="pitch.logo">
+                    </div>
+                    <div class="col col-75">
+                        <h1 class="single-pitch-title item-text-wrap">สถานที่ {{pitch.name}}</h1>
+                        <hr>
+                        <h2 class="color-subhead" ng-if="pitch">{{pitch.address}}, {{pitch.district_name}}</h2>
+                    </div>
+                </div>
+                <div class="row row-no-padding row-center">
+                    <div class="col col-33 col-center text text-left">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col col-center">
+                                <img src="img/icon/pitch_size.png" width="100%" height="100%"> <strong>ขนาด</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col more-height">
+                                <strong class="size">{{pitch.size}}</strong>
+                                <img class="pitch-size-person" src="img/logo/pitch_size_person.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-33 col-center text text-left">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col text-center">
+                                <img src="img/icon/pitch_type.png" width="100%" height="100%"> <strong>สถานที่</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col text-center more-height">
+                                <span><i class="icon ion-arrow-right-b"></i>  {{pitch.pitch_type}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-33 col-center text text-left right-col">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col text-center">
+                                <img src="img/icon/map_single.png" width="100%" height="100%"> <strong style="padding-bottom: 10px;">แผนที่</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col text-center more-height-img">
+                                <a ng-href="#/app/map/{{pitch.latitude}}/{{pitch.longtitude}}/{{pitch.name}}"><img src="img/icon/map_big_single.png" width="100%" height="100%" style="width: 30%; height: 30%; padding-top: 10px;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center phone padding">
+                    <img src="img/icon/phone_single.png">
+                    <strong class="color-white">{{pitch.phone}}</strong>
+                </div>
+                <div class="item price" ng-repeat="price in prices">
+                    <div class="row row-no-padding">
+                        <div class="col col-50 text-center">
+                            <img src="img/icon/time.png">
+                            <strong class="color-white">{{formatTimeAdv(price.start_hour)}} - {{formatTimeAdv(price.end_hour)}}</strong>
+                        </div>
+                        <div class="col col-50">
+                            <img src="img/icon/price.png">
+                            <strong class="color-white">{{price.price | number}} บาทต่อชั่วโมง</strong>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="text-center facility">
+                    <img src="img/icon/facility.png"> <strong class="color-white">ສິ່ງອຳນວຍຄວາມສະດວກ</strong>
+                </div> -->
+            </div>
+            <div class="row" ng-if="!isLoading">
+                <div class="col col-33">
+
+                </div>
+                <div class="col col-67">
+                    <a ng-disabled="!prices.length || !payment.length" class="button button-block btn button-icon icon-right ion-chevron-right" ng-href="#/app/timetable/{{pitch_id}}/{{pitch.period_type_id}}" transitiontype="fade" direction="left" go-native> <strong>ตรวจสอบตารางเวลา </strong></a>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

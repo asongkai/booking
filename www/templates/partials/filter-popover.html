@@ -1,0 +1,24 @@
+<ion-popover-view>
+  <ion-content>
+    <div class="list">
+      <a class="item item-icon-left" ng-click="filterTop()">
+        <span class="icon ion-star"></span> Top
+      </a>
+      <a class="item item-icon-left" ng-click="filterSmallToLarge()">
+        <span class="icon ion-minus"></span> Min -> Max
+      </a>
+      <a class="item item-icon-left" ng-click="filterLargeToSmall()">
+        <span class="icon ion-plus"></span> Max -> Min
+      </a>
+      <a class="item item-icon-left" ng-click="filterInside()">
+        <span class="icon ion-ios-reverse-camera"></span> สถานที่ในที่ร่ม
+      </a>
+      <a class="item item-icon-left" ng-click="filterOutside()">
+        <span class="icon ion-ios-reverse-camera-outline"></span> สถานที่กลางแจ้ง
+      </a>
+      <a class="item item-icon-left item-icon-right" ng-click="openModal()">
+        <span class="icon ion-contrast"></span> กสถานที่ <i class="icon ion-chevron-right"></i>
+      </a>
+    </div>
+  </ion-content>
+</ion-popover-view>

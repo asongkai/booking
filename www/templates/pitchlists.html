@@ -1,0 +1,68 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon">
+            <img src="img/icon/calendar.png" style="width: 5%; height: 5%;"> {{date | date:'dd/MM/yyyy'}} &nbsp; <img src="img/icon/time.png" style="width: 5%; height: 5%;"> {{ book_time }}
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="pitch-list" scroll="true">
+        <div class="row row-center" ng-if="!pitches.length">
+            <div class="col col-center">
+                <h1 class="text-center head-color">ไม่มีเพิ่มเติมในเวลาที่คุณต้องการ</h1>
+                <a href="#/app/search" class="button btn button-full">คลิกที่นี่เพื่อเปลี่ยนเวลาอื่น ๆ</a>
+            </div>
+        </div>
+        <div class="list">
+            <a class="button button-icon button-full pitch-list-item item pitchlist btn-touch  padding-left padding-right" ng-repeat="pitch in pitches" ng-href="#/app/pitchlists/{{pitch.id}}" transitiontype="fade" direction="left" go-native>
+                <div class="row row-no-padding pitch-row">
+                    <div class="col col-20 logo">
+                        <img ng-src="http://booking.asongkai.com{{pitch.logo}}" style="width: 70%; height: 70%;" ng-if="pitch.logo">
+                    </div>
+                    <div class="col col-80">
+                        <h1 class="pitch-list-title item-text-wrap">สถานที่ {{pitch.name}}</h1>
+                        <hr class="color-white">
+                        <h2 class="color-subhead">{{pitch.address}}, {{pitch.district_name}}</h2>
+                    </div>
+                </div>
+                <div class="row row-no-padding row-center">
+                    <div class="col col-33 col-center text text-left">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col col-center">
+                                <img src="img/icon/pitch_size.png" width="100%" height="100%"> <strong>ขนาด</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col more-height">
+                                <strong class="size">{{pitch.size}}</strong>
+                                <img class="pitch-size-person" src="img/logo/pitch_size_person.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-33 col-center text text-left">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col text-center">
+                                <img src="img/icon/pitch_type.png" width="100%" height="100%"> <strong>สถานที่</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col text-center more-height">
+                                <span>{{pitch.pitch_type}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-33 col-center text text-left pitch-price">
+                        <div class="row row-no-padding row-center head">
+                            <div class="col text-center">
+                                <img src="img/icon/price.png" width="100%" height="100%"> <strong>ราคา</strong>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding">
+                            <div class="col color-white text-center more-height">
+                                <span>{{pitch.pitch_price | number}} บาท</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

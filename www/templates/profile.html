@@ -1,0 +1,42 @@
+<ion-view>
+	<ion-nav-title>ข้อมูลส่วนบุคคล</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" scroll="true">
+    	<div class="center">
+          <ion-spinner ng-if="isLoading" icon="dots" class="spinner-positive"></ion-spinner>
+        </div>
+    	<div class="list" ng-init="initProfile()" ng-show="profiles">
+		  <a class="item item-icon-left" href="#">
+		    <i class="icon ion-ios-person-outline"></i>
+		    {{ profiles.first_name }} {{ profiles.last_name }}
+		  </a>
+		  <a class="item item-icon-left" href="#">
+		    <i class="icon ion-ios-telephone-outline"></i>
+		    +{{ profiles.phone }}
+		  </a>
+		  <a class="item item-icon-left" href="#">
+		    <i class="icon ion-ios-email-outline"></i>
+		    {{ profiles.email }}
+		    <span class="item-note">
+		      ที่อยู่อีเมล
+		    </span>
+		  </a>
+		  <a class="item item-icon-left" href="#">
+		    <i class="icon ion-ios-location-outline"></i>
+		    {{ profiles.address }}
+		  </a>
+		  <a class="item item-icon-left" ui-sref="app.currentbooked">
+		    <i class="icon ion-ios-football"></i>
+			  สถานที่ที่กำลังจอง
+		    <span class="badge badge-assertive">{{ CountCurrentBooked.count | number }}</span>
+		  </a>
+		  <a class="item item-icon-left" ui-sref="app.bookedhistory">
+		    <i class="icon ion-ios-football-outline"></i>
+			  สถานที่ที่จองแล้ว
+		    <span class="badge badge-assertive">{{ CountBookedHistory.count | number }}</span>
+		  </a>
+		</div>
+    </ion-content>
+</ion-view>

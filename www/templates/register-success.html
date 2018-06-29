@@ -1,0 +1,53 @@
+<ion-view>
+    <div class="bar bar-header bar-positive">
+        <h1 class="title">ข้อมูลส่วนบุคคล</h1>
+    </div>
+    <ion-content class="register has-header">
+        <ion-scroll class="padding" scroll="true" direction="y">
+            <div class="row row-center row-no-padding">
+                <div class="col col-center register-box">
+                    <div class="card">
+                        <div class="item item-text-wrap">
+                            <div class="row row-no-padding">
+                                <div class="col col-center">
+                                    <form name="completedForm" novalidate>
+                                        <label class="item item-input item-stacked-label text-left">
+                                        <span class="input-label color-white">ชื่อ</span>
+                                        <input type="text" class="padding" ng-model="completed.first_name" placeholder="" required>
+                                    </label>
+                                        <label class="item item-input item-stacked-label text-left">
+                                        <span class="input-label color-white">ขยาย</span>
+                                        <input type="text" ng-model="completed.last_name" placeholder="" required>
+                                    </label>
+                                        <label class="item item-input item-stacked-label text-left">
+                                        <span class="input-label color-white">อีเมล</span>
+                                        <input type="text" ng-model="completed.email" placeholder="" required>
+                                    </label>
+                                        <label class="item item-input item-stacked-label text-left">
+                                        <span class="input-label color-white">ที่อยู่</span>
+                                        <textarea ng-model="completed.address" rows="3"
+                                                  placeholder=""
+                                                  class="text-area" required></textarea>
+                                    </label>
+                                        <div class="row">
+                                            <div class="col col-10">
+                                            </div>
+                                            <div class="col col-80">
+                                                <button ng-click="completedRegistration(completed)" class="register-btn button button-full icon-right ion-chevron-right">
+                                                    สร้างบัญชี
+                                            </button>
+                                            </div>
+                                            <div class="col col-10">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-view>
